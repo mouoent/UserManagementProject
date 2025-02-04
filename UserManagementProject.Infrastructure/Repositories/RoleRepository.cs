@@ -14,7 +14,9 @@ public class RoleRepository : BaseRepository<Role>, IRoleRepository
         IAuditLogService auditLogService,
         IMemoryCache cache) 
         : base(dbContext, auditLogService)
-    { }
+    {
+        _cache = cache;
+    }
 
     public async Task<List<Role>> GetAllRolesAsync()
     {

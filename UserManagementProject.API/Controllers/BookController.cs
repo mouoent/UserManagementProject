@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementProject.Application.Features.Book.Commands.Create;
+using UserManagementProject.Application.Features.Book.Commands.Update;
 using UserManagementProject.Application.Features.Book.Queries;
 
 namespace UserManagementProject.API.Controllers;
@@ -38,5 +39,13 @@ public class BookController : ControllerBase
         var result = await _mediator.Send(request);
 
         return Ok(result);
+    }
+
+    [HttpPatch("/update-book")]
+    public async Task<IActionResult> UpdateBook([FromBody] UpdateBookCommand command)
+    {
+        await _mediator.Send(command);
+
+        return Ok($"Book with ID {command.Id} succesfully updated!");
     }
 }

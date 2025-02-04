@@ -18,7 +18,9 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
         IMemoryCache cache, 
         IAuditLogService auditLogService) 
         : base(dbContext, auditLogService)   
-    { }        
+    { 
+        _cache = cache;
+    }        
 
     public async Task<List<CategoryDto>> GetAllCategoriesAsync()
     {
